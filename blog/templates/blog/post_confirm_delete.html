@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-8">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="post">
+                    <h2>Biztos, hogy törölni akarod a "{{ object.cim }}" posztot?</h2>
+                    <button type="submit" class="btn btn-danger">Igen</button>
+                    <a href="{% url 'post-detail' object.id %}">Nem, meggondoltam magam</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

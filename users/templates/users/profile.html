@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-8">
+            <img class="center" src="{{ user.profile.image.url }}">
+            <br>
+            <h2>felhasználónév: {{ user.username }}</h2>
+            <h2>E-mail cím: {{ user.email }}</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                    {{ u_form|crispy }}
+                    {{ p_form|crispy }}
+                    <button class="btn btn-success">Mentés</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
