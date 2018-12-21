@@ -9,7 +9,7 @@ class Post(models.Model):
     tartalom = models.TextField()
     kelt = models.DateTimeField(default=timezone.now)
     szerzo = models.ForeignKey(User, on_delete=models.CASCADE)
-    intro = models.CharField(max_length=100, default='intro')
+    intro = models.CharField(max_length=200, default='intro')
     kep = models.ImageField(default='pdefault.png', upload_to='post_pics')
 
     def __str__(self):
