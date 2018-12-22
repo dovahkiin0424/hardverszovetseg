@@ -10,7 +10,7 @@ class Post(models.Model):
     kelt = models.DateTimeField(default=timezone.now)
     szerzo = models.ForeignKey(User, on_delete=models.CASCADE)
     intro = models.CharField(max_length=200, default='intro')
-    kep = models.ImageField(default='pdefault.png')
+    kep = models.ImageField(default='pdefault.png', upload_to='post_pics')
 
     def __str__(self):
         return self.cim
