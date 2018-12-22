@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <form method="POST">
                 {% csrf_token %}
-                <div class="post">
+                <div class="post" enctype="multipart/form-data">
                     {{ form|crispy }}
                     <button class="btn btn-success">Mentés</button>
                 </div>
