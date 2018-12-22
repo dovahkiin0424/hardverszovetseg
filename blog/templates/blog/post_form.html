@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col-md-8">
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="post" enctype="multipart/form-data">
+                <div class="post">
                     {{ form|crispy }}
                     <button class="btn btn-success">Mentés</button>
                 </div>
