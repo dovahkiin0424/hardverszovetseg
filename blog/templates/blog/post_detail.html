@@ -3,9 +3,9 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8">
-            <h1 class="mt-4">{{ object.cim }}</h1>
+            <h1 class="mt-4">{{ object.cím }}</h1>
             
-            <p class="lead">írta: {{ object.szerzo }}</p>
+            <a href="{% url 'user-posts' object.szerző.username %}">{{ object.szerző }}</a>
 
             <hr>
 
@@ -13,11 +13,11 @@
 
             <hr>
 
-            <img class="img-fluid rounded" src="{{ object.kep.url }}">
+            <img class="img-fluid rounded" src="{{ object.kép.url }}">
 
             <hr>
 
-            <p class="lead">{{ object.intro }}</p>
+            <p class="lead"><b>{{ object.intro }}</b></p>
 
             <p>{{ object.tartalom }}</p>
 
