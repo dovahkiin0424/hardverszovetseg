@@ -19,7 +19,7 @@
 
             <p class="lead"><b>{{ object.intro }}</b></p>
 
-            <p>{{ object.tartalom }}</p>
+            <p>{{ object.tartalom|linebreaks }}</p>
 
             {% if object.szerzo == user %}
                 <a class="btn btn-primary" href="{% url 'post-update' object.id %}">Frissítés</a>
