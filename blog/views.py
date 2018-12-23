@@ -29,23 +29,23 @@ class PostDetailView(DetailView):
 
 class PostCreateView(CreateView):
     model = Post
-    fields = ['cím', 'intro', 'kép', 'tartalom']
+    fields = ['cim', 'intro', 'kep', 'tartalom']
 
     def form_valid(self, form):
-        form.instance.szerző = self.request.user
+        form.instance.szerzo = self.request.user
         return super().form_valid(form)
 
 class PostUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['cím', "intro", 'kép', 'tartalom']
+    fields = ['cim', "intro", 'kep', 'tartalom']
 
     def form_valid(self, form):
-        form.instance.szerző = self.request.user
+        form.instance.szerzo = self.request.user
         return super().form_valid(form)
 
     def test_func(self):
         post = self.get_object()
-        if self.request.user == post.szerző:
+        if self.request.user == post.szerzo:
             return True
         else:
             return False
@@ -56,7 +56,7 @@ class PostDeleteView(UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         post = self.get_object()
-        if self.request.user == post.szerző:
+        if self.request.user == post.szerzo:
             return True
         else:
             return False
