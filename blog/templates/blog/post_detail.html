@@ -1,8 +1,8 @@
 {% extends "blog/base.html" %}
 {% block content %}
 <div class="col-lg-8">
-    <h1 class="mt-4">{{ object.cím }}</h1>      
-    <a href="{% url 'user-posts' object.szerző.username %}">{{ object.szerző }}</a>
+    <h1 class="mt-4">{{ object.cim }}</h1>      
+    <a href="{% url 'user-posts' object.szerző.username %}">{{ object.szerzo }}</a>
     <hr>
     <p>Kelt: {{ object.kelt|date:"Y m. d. || H:i" }}</p>
     <hr>
@@ -10,7 +10,7 @@
     <hr>
     <p class="lead"><b>{{ object.intro }}</b></p>
     <p>{{ object.tartalom|safe }}</p>
-    {% if object.szerző == user %}
+    {% if object.szerzo == user %}
         <a class="btn btn-primary" href="{% url 'post-update' object.id %}">Frissítés</a>
         <a class="btn btn-danger" href="{% url 'post-delete' object.id %}">Törlés</a>
     {% endif %}
