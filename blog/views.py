@@ -22,30 +22,30 @@ class UserPostListView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Post.objects.filter(szerzo=user).order_by('-kelt')
+        return Post.objects.filter(szerző=user).order_by('-kelt')
 
 class PostDetailView(DetailView):
     model = Post
 
 class PostCreateView(CreateView):
     model = Post
-    fields = ['cim', 'intro', 'kep', 'tartalom']
+    fields = ['cím', 'intro', 'kép', 'tartalom']
 
     def form_valid(self, form):
-        form.instance.szerzo = self.request.user
+        form.instance.szerző = self.request.user
         return super().form_valid(form)
 
 class PostUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['cim', "intro", 'kep', 'tartalom']
+    fields = ['cím', "intro", 'kép', 'tartalom']
 
     def form_valid(self, form):
-        form.instance.szerzo = self.request.user
+        form.instance.szerző = self.request.user
         return super().form_valid(form)
 
     def test_func(self):
         post = self.get_object()
-        if self.request.user == post.szerzo:
+        if self.request.user == post.szerző:
             return True
         else:
             return False
@@ -56,7 +56,7 @@ class PostDeleteView(UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         post = self.get_object()
-        if self.request.user == post.szerzo:
+        if self.request.user == post.szerző:
             return True
         else:
             return False
