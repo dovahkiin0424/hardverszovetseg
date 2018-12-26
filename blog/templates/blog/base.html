@@ -13,17 +13,6 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-        
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131247414-1"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'UA-131247414-1');
-        </script>
-
 
         <link href="{% static "blog/main.css" %}" rel="stylesheet">
 
@@ -75,14 +64,41 @@
         </nav>
 
         <div class="container">
-            {% if messages %}
-                {% for message in messages %}
-                    <div>
-                        {{ message }}
-                    </div>
-                {% endfor %}
+            <div class="row">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% block content %}{% endblock content %}
+
+                
+
+            </div>
+
+            {% if is_paginated %}
+            <ul class="pagination justify-content-center mb-4">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">Első oldal</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}"> &larr;</a>
+                    </li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}"> &rarr;</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Utolsó oldal</a>
+                    </li>
+                {% endif %}
+            </ul>
             {% endif %}
-            {% block content %}{% endblock content %}
+
         </div>
         
     </body>

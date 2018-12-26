@@ -1,49 +1,38 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <div class="container">
-        <div class="row">
+<div class="col-md-8">
 
-            <div class="col-md-8">
+    <h1 class="my-4">Híreink</h1>
 
-                <h1 class="my-4">Híreink</h1>
+    {% for post in posts %}
+    <div class="card mb-4">
+        <img class="card-img-top" src="{{ post.kép.url }}">
+        <div class="card-body">
+            <h2 class="card-title">{{ post.cím }}</h2>
+            <p class="card-text"><b>{{ post.intro }}</b></p>
+            <a href="{% url "post-detail" post.id %}" class="btn btn-primary">Olvasd tovább! &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+            <p class="card-text">Módosítás dátuma: {{ post.kelt|date:"Y m. d. || H:i" }}</p>
+            <a href="{% url 'user-posts' post.szerző.username %}">{{ post.szerző }}</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
-                {% for post in posts %}
-                <div class="card mb-4">
-                    <img class="card-img-top" src="{{ post.kep.url }}">
-                    <div class="card-body">
-                        <h2 class="card-title">{{ post.cim }}</h2>
-                        <p class="card-text"><b>{{ post.intro }}</b></p>
-                        <a href="{% url "post-detail" post.id %}" class="btn btn-primary">Olvasd tovább! &rarr;</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <p class="card-text">Módosítás dátuma: {{ post.kelt|date:"Y m. d. || H:i" }}</p>
-                        <a href="{% url 'user-posts' post.szerzo.username %}">{{ post.szerzo }}</a>
-                    </div>
-                </div>
-                {% endfor %}
+<div class="col-md-4">
+
+    <div class="card my-4">
+        <h5 class="card-header">Keresés</h5>
+        <div class="card-body">
+            <div class="input-group">
+                <input type="text" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button">Keresés</button>
+                </span>
             </div>
         </div>
     </div>
+</div>
 
-{% if is_paginated %}
-    <ul class="pagination justify-content-center mb-4">
-    {% if page_obj.has_previous %}
-        <li class="page-item">
-            <a class="page-link" href="?page=1">Első oldal</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.previous_page_number }}"> &larr;</a>
-        </li>
-    {% endif %}
-    {% if page_obj.has_next %}
-        <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.next_page_number }}"> &rarr;</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Utolsó oldal</a>
-        </li>
-    {% endif %}
-    </ul>
-{% endif %}
-    </div>
 {% endblock content %}

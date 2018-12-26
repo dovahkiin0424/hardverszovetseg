@@ -1,30 +1,32 @@
 {% extends "blog/base.html" %}
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8">
-            <h1 class="mt-4">{{ object.cim }}</h1>
-            
-            <a href="{% url 'user-posts' object.szerzo.username %}">{{ object.szerzo }}</a>
+<div class="col-lg-8">
+    <h1 class="mt-4">{{ object.cím }}</h1>      
+    <a href="{% url 'user-posts' object.szerző.username %}">{{ object.szerző }}</a>
+    <hr>
+    <p>Kelt: {{ object.kelt|date:"Y m. d. || H:i" }}</p>
+    <hr>
+    <img class="img-fluid rounded" src="{{ object.kép.url }}">
+    <hr>
+    <p class="lead"><b>{{ object.intro }}</b></p>
+    <p>{{ object.tartalom|safe }}</p>
+    {% if object.szerző == user %}
+        <a class="btn btn-primary" href="{% url 'post-update' object.id %}">Frissítés</a>
+        <a class="btn btn-danger" href="{% url 'post-delete' object.id %}">Törlés</a>
+    {% endif %}
+</div>
 
-            <hr>
+<div class="col-md-4">
 
-            <p>Kelt: {{ object.kelt|date:"Y m. d. || H:i" }}</p>
-
-            <hr>
-
-            <img class="img-fluid rounded" src="{{ object.kep.url }}">
-
-            <hr>
-
-            <p class="lead"><b>{{ object.intro }}</b></p>
-
-            <p>{{ object.tartalom|linebreaks }}</p>
-
-            {% if object.szerzo == user %}
-                <a class="btn btn-primary" href="{% url 'post-update' object.id %}">Frissítés</a>
-                <a class="btn btn-danger" href="{% url 'post-delete' object.id %}">Törlés</a>
-            {% endif %}
+    <div class="card my-4">
+        <h5 class="card-header">Keresés</h5>
+        <div class="card-body">
+            <div class="input-group">
+                <input type="text" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button">Keresés</button>
+                </span>
+            </div>
         </div>
     </div>
 </div>
