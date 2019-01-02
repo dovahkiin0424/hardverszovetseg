@@ -3,12 +3,10 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 from PIL import Image
-from ckeditor.fields import RichTextField
-from ckeditor_uploader.fields import RichTextUploadingField
 
 class Post(models.Model):
     cim = models.CharField(max_length=100)
-    tartalom = RichTextUploadingField()
+    tartalom = models.TextField()
     kelt = models.DateTimeField(default=timezone.now)
     szerzo = models.ForeignKey(User, on_delete=models.CASCADE)
     intro = models.CharField(max_length=100, default='intro')
