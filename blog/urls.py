@@ -12,4 +12,4 @@ urlpatterns = [
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name="post-update"),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name="post-delete"),
     path('about/', views.about, name="blog-about"),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
