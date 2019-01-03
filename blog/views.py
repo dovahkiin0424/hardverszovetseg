@@ -16,13 +16,13 @@ class PostListView(ListView):
 
 class UserPostListView(ListView):
     model = Post
-    paginate_by = 5
+    paginate_by = 6
     template_name = 'blog/user_posts.html'
     context_object_name = 'posts'
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Post.object.filter(szerzo=user).order_by('-kelt')
+        return Post.objects.filter(szerzo=user).order_by('-kelt')
 
 class PostDetailView(DetailView):
     model = Post
