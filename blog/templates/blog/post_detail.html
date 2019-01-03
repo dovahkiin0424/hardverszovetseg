@@ -9,7 +9,7 @@
     <img class="img-fluid rounded" src="{{ object.kep.url }}">
     <hr>
     <p class="lead"><b>{{ object.intro }}</b></p>
-    <p>{{ object.tartalom }}</p>
+    <p>{{ object.tartalom|safe }}</p>
     {% if object.szerzo == user %}
         <a class="btn btn-primary" href="{% url 'post-update' object.id %}">Frissítés</a>
         <a class="btn btn-danger" href="{% url 'post-delete' object.id %}">Törlés</a>
