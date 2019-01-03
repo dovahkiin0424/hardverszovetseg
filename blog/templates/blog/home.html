@@ -14,7 +14,7 @@
         </div>
         <div class="card-footer text-muted">
             <p class="card-text">Módosítás dátuma: {{ post.kelt|date:"Y m. d. || H:i" }}</p>
-            <a href="{% url 'user-posts' post.szerző.username %}">{{ post.szerzo }}</a>
+            <a href="#">{{ post.szerzo }}</a>
         </div>
     </div>
     {% endfor %}
