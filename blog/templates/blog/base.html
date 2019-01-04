@@ -15,6 +15,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 
         <link href="{% static "blog/main.css" %}" rel="stylesheet">
+        
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" media="all" rel="stylesheet" />
+        
+        <link href="{{STATIC_URL}}froala_editor/css/froala_editor.min.css" type="text/css" media="all" rel="stylesheet" />
+        
+        <link href="{{STATIC_URL}}froala_editor/css/froala_style.min.css" type="text/css" media="all" rel="stylesheet" />
+        
+        <script type="text/javascript" src="{{STATIC_URL}}froala_editor/js/froala_editor.min.js"></script>
 
         {% if title %}
             <title>Hardverszövetség - {{ title }}</title>
