@@ -8,6 +8,7 @@
                 {% csrf_token %}
                 <div class="post">
                     {{ form.media }}
+                    {{ form|crispy }}
                     <button class="btn btn-success">Mentés</button>
                 </div>
             </form>
