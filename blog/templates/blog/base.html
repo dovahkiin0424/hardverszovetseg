@@ -16,13 +16,9 @@
 
         <link href="{% static "blog/main.css" %}" rel="stylesheet">
         
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" media="all" rel="stylesheet" />
+        <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
         
-        <link href="{{STATIC_URL}}froala_editor/css/froala_editor.min.css" type="text/css" media="all" rel="stylesheet" />
-        
-        <link href="{{STATIC_URL}}froala_editor/css/froala_style.min.css" type="text/css" media="all" rel="stylesheet" />
-        
-        <script type="text/javascript" src="{{STATIC_URL}}froala_editor/js/froala_editor.min.js"></script>
+        <script>tinymce.init({selector: '#mytextarea'});</script>
 
         {% if title %}
             <title>Hardverszövetség - {{ title }}</title>
