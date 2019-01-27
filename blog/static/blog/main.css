@@ -8,13 +8,13 @@ body {
     padding-top: 54px;
 }
 
-.navbar-light {
+.navbar-dark {
     background-image: url("nav_hatter.jpg");
     font-size: 1.3rem;
     opacity: 1;
 }
 
-.navbar-light a {
+.navbar-dark a {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     opacity: 1;
 }
