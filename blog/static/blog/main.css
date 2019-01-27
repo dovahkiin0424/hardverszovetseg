@@ -8,8 +8,9 @@ body {
     padding-top: 54px;
 }
 
-.nav-link {
-    font-size: 1.2rem;
+.navbar-dark {
+    background-image: url("nav_hatter.jpg");
+    font-size: 1.3rem;
 }
 
 @media (min-width: 992px) {
