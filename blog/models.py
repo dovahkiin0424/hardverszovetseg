@@ -12,6 +12,7 @@ class Post(models.Model):
     szerzo = models.ForeignKey(User, on_delete=models.CASCADE)
     intro = models.CharField(max_length=100, default='intro')
     kep = models.ImageField(default='pdefault.png', upload_to='post_pics')
+    megtekintes = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.cim
