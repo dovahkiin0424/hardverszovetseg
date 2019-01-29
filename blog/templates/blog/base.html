@@ -89,11 +89,6 @@
                         <a class="page-link" href="?page={{ page_obj.previous_page_number }}"> &larr;</a>
                     </li>
                 {% endif %}
-
-                    <li class="page-item">
-                        <a class="page-link" href="#">{{ page_obj.number }}/{{ page_obj.paginator.num_pages }}</a>
-                    <li>
-
                 {% if page_obj.has_next %}
                     <li class="page-item">
                         <a class="page-link" href="?page={{ page_obj.next_page_number }}"> &rarr;</a>
