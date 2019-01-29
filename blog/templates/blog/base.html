@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +16,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 
         <link href="{% static "blog/main.css" %}" rel="stylesheet">
-        
 
         {% if title %}
             <title>Hardverszövetség - {{ title }}</title>
@@ -89,6 +89,10 @@
                         <a class="page-link" href="?page={{ page_obj.previous_page_number }}"> &larr;</a>
                     </li>
                 {% endif %}
+
+                    <li class="page-item">
+                        <a class="page-link" href="#">{{ page_obj.number }}/{{ page_obj.paginator.num_pages }}</a>
+
                 {% if page_obj.has_next %}
                     <li class="page-item">
                         <a class="page-link" href="?page={{ page_obj.next_page_number }}"> &rarr;</a>

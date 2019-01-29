@@ -1,11 +1,10 @@
 {% extends "blog/base.html" %}
 {% block content %}
-{% load crispy_forms_tags %}
 <div class="col-md-8">
 
-    <h1 class="my-4">Híreink</h1>
+    <h1 class="my-4">{{ view.kwargs.username }} irományai ({{ page_obj.paginator.count }})</h1>
 
-    {% for post in filter.qs %}
+    {% for post in posts %}
     <div class="card mb-4">
         <img class="card-img-top" src="{{ post.kep.url }}">
         <div class="card-body">
@@ -15,7 +14,6 @@
         </div>
         <div class="card-footer text-muted">
             <p class="card-text">Módosítás dátuma: {{ post.kelt|date:"Y m. d. || H:i" }}</p>
-            <p class="card-text">&#x1f441 {{ post.megtekintes }} megtekintés</p>
             <a href="{% url 'user-posts' post.szerzo.username %}">{{ post.szerzo }}</a>
         </div>
     </div>
@@ -28,10 +26,10 @@
         <h5 class="card-header">Keresés</h5>
         <div class="card-body">
             <div class="input-group">
-                <form method="GET">
-                    {{ filter.form|crispy }}
-                    <button class="btn btn-primary" type="submit">Keresés</button>
-                </form>
+                <input type="text" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button">Keresés</button>
+                </span>
             </div>
         </div>
     </div>

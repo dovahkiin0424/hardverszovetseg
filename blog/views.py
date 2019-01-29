@@ -5,6 +5,8 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post
 from django.contrib.auth.models import User
+from .filters import PostFilter
+
 
 class PostListView(ListView):
     model = Post
@@ -13,19 +15,29 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-kelt']
 
+    def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            context["filter"] = PostFilter(self.request.GET, queryset=self.get_queryset())
+            return context
+        
 
-#class UserPostListView(ListView):
-    #model = Post
-    #paginate_by = 6
-    #template_name = 'blog/user_posts.html'
-    #context_object_name = 'posts'
+class UserPostListView(ListView):
+    model = Post
+    paginate_by = 6
+    template_name = 'blog/user_posts.html'
+    context_object_name = 'posts'
 
-    #def get_queryset(self):
-        #user = get_object_or_404(User, username=self.kwargs.get('username'))
-        #return Post.objects.filter(szerzo=user).order_by('-kelt')
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(szerzo=user).order_by('-kelt')
 
 class PostDetailView(DetailView):
     model = Post
+    def get_object(self):
+        object = super(PostDetailView, self).get_object()
+        object.megtekintes += 1
+        object.save()
+        return object
 
 class PostCreateView(CreateView):
     model = Post

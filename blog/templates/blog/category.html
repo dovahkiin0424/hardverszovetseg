@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 <div class="col-md-8">
 
-    <h1 class="my-4">Híreink</h1>
+    <h1 class="my-4">{{ category.name }}</h1>
 
     {% for post in filter.qs %}
     <div class="card mb-4">
