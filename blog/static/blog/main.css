@@ -4,27 +4,31 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-blog-home/blob/master/LICENSE)
  */
 
-body {
-    padding-top: 54px;
-}
 
 h1, h2 {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #fff;
+}
+
+a {
+  color: #b5b5b5;
+}
+
+body {
+  background: url("bg.jpg");
+}
+
+.card {
+  display: inline-block;
 }
 
 .navbar-dark {
-    background-image: url("nav_hatter.jpg");
-    font-size: 1.3rem;
-    opacity: 1;
-}
-
-.navbar-dark a {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    opacity: 1;
+  background: url("nav.png");
+  font-size: 0.8rem;
 }
 
 @media (min-width: 992px) {
     body {
-        padding-top: 56px;
+        padding-top: 100px;
     }
 }
