@@ -6,33 +6,28 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"  crossorigin="anonymous"></script>
-
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-
+        <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.css" media="screen">
+        <script src="https://bootswatch.com/_vendor/jquery/dist/jquery.min.js"></script>
+        <script src="https://bootswatch.com/_vendor/popper.js/dist/umd/popper.min.js"></script>
+        <script src="https://bootswatch.com/_vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="https://bootswatch.com/_assets/js/custom.js"></script>
         <link href="{% static "blog/main.css" %}" rel="stylesheet">
 
         {% if title %}
-            <title>Hardverszövetség - {{ title }}</title>
+            <title>{{ object.cim }}</title>
         {% else %}
             <title>Hardverszövetség</title>
         {% endif %}
     </head>
     <body>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
             <div class="container">
                 <a href="{% url 'blog-home' %}">
                     <img src="{% static "blog/logo.png" %}" style="width: 100px">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
@@ -60,12 +55,16 @@
                             <a class="nav-link" href="{% url 'register' %}">Regisztráció</a>
                         {% endif %}
                     </ul>
+                    <form class="form-inline my-2 my-lg-0" method="GET">
+                      {{ filter.form|crispy }}
+                      <button class="btn btn-primary my-2 my-sm-0" type="submit">Keresés</button>
+                    </form>
                 </div>
             </div>
         </nav>
 
-        <div class="container">
-            <div class="row">
+        <div class="album py-5">
+            <div class="container">
                 {% if messages %}
                     {% for message in messages %}
                         <div>
@@ -74,33 +73,7 @@
                     {% endfor %}
                 {% endif %}
                 {% block content %}{% endblock content %}
-
-                
-
             </div>
-
-            {% if is_paginated %}
-            <ul class="pagination justify-content-center mb-4">
-                {% if page_obj.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page=1">Első oldal</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}"> &larr;</a>
-                    </li>
-                {% endif %}
-                {% if page_obj.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}"> &rarr;</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Utolsó oldal</a>
-                    </li>
-                {% endif %}
-            </ul>
-            {% endif %}
-
         </div>
-        
     </body>
 </html>

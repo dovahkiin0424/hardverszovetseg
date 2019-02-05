@@ -1,35 +1,24 @@
 {% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
+
 <div class="col-lg-8">
-    <h1 class="mt-4">{{ object.cim }}</h1>      
-    <a href="{% url 'user-posts' object.szerzo.username %}">{{ object.szerzo }}</a>
-    <hr>
-    <p>&#x1f441 {{ post.megtekintes }} megtekintés</p>
-    <p>Kelt: {{ object.kelt|date:"Y m. d. || H:i" }}</p>
-    <hr>
-    <img class="img-fluid rounded" src="{{ object.kep.url }}">
-    <hr>
-    <p class="lead"><b>{{ object.intro }}</b></p>
-    <p>{{ object.tartalom|safe }}</p>
+  <div class="card bg-dark mb-4">
+      <img class="card-img-top" src="{{ object.kep.url }}">
+      <div class="card-body">
+          <h2 class="card-title">{{ object.cim }}</h2>
+          <p class="card-text"><b>{{ object.intro }}</b></p>
+          <p class="card-text">{{ object.tartalom|safe }}</p>
+      </div>
+      <div class="card-footer text-muted">
+          <p class="card-text">Módosítás dátuma: {{ object.kelt|date:"Y m. d. || H:i" }}</p>
+          <p class="card-text">&#x1f441 {{ object.megtekintes }} megtekintés</p>
+          <a href="{% url 'user-posts' object.szerzo.username %}">{{ object.szerzo }}</a>
+      </div>
+  </div>
     {% if object.szerzo == user %}
         <a class="btn btn-primary" href="{% url 'post-update' object.id %}">Frissítés</a>
         <a class="btn btn-danger" href="{% url 'post-delete' object.id %}">Törlés</a>
     {% endif %}
 </div>
-
-<div class="col-md-4">
-
-    <div class="card my-4">
-        <h5 class="card-header">Keresés</h5>
-        <div class="card-body">
-            <div class="input-group">
-                <input type="text" class="form-control">
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button">Keresés</button>
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-
 {% endblock content %}
